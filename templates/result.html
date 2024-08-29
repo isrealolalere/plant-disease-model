@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Style for the logout button */
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .logout-form {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Logout Button -->
+    <form action="{{ url_for('logout') }}" method="post" class="logout-form">
+        <input type="submit" value="Logout" class="logout-btn">
+    </form>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Maize Disease Detection Result</h1>
+        <div class="text-center">
+            <!-- Display the uploaded image -->
+            <img src="{{ image_url }}" alt="Uploaded Image" class="img-thumbnail" width="300">
+            <p class="mt-3"><strong>Predicted Label:</strong> {{ pred }}</p>
+            <p><strong>Probability:</strong> {{ prob }}</p>
+            <a href="/" class="btn btn-secondary mt-3">Go Back to Upload Page</a>
+        </div>
+    </div>
+</body>
+</html>

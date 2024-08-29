@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h1 {
+            color: #00796b;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .login-form input[type="submit"] {
+            width: 100%;
+            background-color: #00796b;
+            color: white;
+            padding: 12px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-form input[type="submit"]:hover {
+            background-color: #004d40;
+        }
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #00796b;
+        }
+        .signup-link a {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Welcome to Diabetes Model Prediction</h1>
+        <form class="login-form" action="/login" method="POST">
+            {{ form.hidden_tag() }}
+
+            {% with errors = form.errors %}
+                {% if errors %}
+                    <ul class="errors">
+                        {% for field, error_messages in errors.items() %}
+                            <li><b>{{ field }}</b>:
+                                {% for error_message in error_messages %}
+                                    {{ error_message }}<br>
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            {{ form.username(placeholder="username") }}
+            {{ form.password(placeholder="password") }}
+            <input type="submit" value="Login">
+        </form>
+
+        <div class="signup-link">
+            <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
